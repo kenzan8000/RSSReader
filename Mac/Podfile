@@ -6,6 +6,7 @@ use_frameworks!
 project target_name
 
 target target_name do
+  pod 'AFNetworking', '~> 3.0'
 end
 
 post_install do |installer|
