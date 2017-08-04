@@ -13,6 +13,8 @@ class ViewController: NSViewController {
     /// MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        LDRRSSClient.sharedInstance
     }
 
 }
