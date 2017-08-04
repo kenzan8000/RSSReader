@@ -1,13 +1,16 @@
+import Cocoa
+
+
 /// MARK: - RSSClient
 class RSSClient: NSObject {
 
     /// MARK: - property
-    static let sharedInstance = VGMapDataDownloader()
+    static let sharedInstance = RSSClient()
 
 
     /// MARK: - init
 
-    init() {
+    override init() {
     }
 
 
