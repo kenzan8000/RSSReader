@@ -1,0 +1,3 @@
+[submodule "Mac/RSSReader/Classes/SwiftyJSON"]
+	path = Mac/RSSReader/Classes/SwiftyJSON
+	url = https://github.com/SwiftyJSON/SwiftyJSON.git
