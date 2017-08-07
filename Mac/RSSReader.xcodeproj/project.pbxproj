@@ -10,6 +10,7 @@
 		220A933DBE61EE0A870CBC37 /* Pods_RSSReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489FFD02EFA982A2B7258CED /* Pods_RSSReader.framework */; };
 		E62EB2541F344C6A009422A9 /* LDRRSSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62EB2521F344C6A009422A9 /* LDRRSSClient.swift */; };
 		E64310F41F2D37CA00E6CCEE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64310F31F2D37CA00E6CCEE /* CloudKit.framework */; };
+		E6470DFD1F384022009BD68F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6470DFC1F384022009BD68F /* SwiftyJSON.swift */; };
 		E6CAFCEF1F3455A00076E35C /* LDRConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CAFCEE1F3455A00076E35C /* LDRConstant.swift */; };
 		E6FD29D61F286E0A0057D0E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD29CF1F286E0A0057D0E8 /* AppDelegate.swift */; };
 		E6FD29D71F286E0A0057D0E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6FD29D01F286E0A0057D0E8 /* Main.storyboard */; };
@@ -25,6 +26,8 @@
 		E62EB2551F344CD8009422A9 /* RSSReader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSReader-Bridging-Header.h"; sourceTree = "<group>"; };
 		E64310F21F2D369300E6CCEE /* RSSReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RSSReader.entitlements; sourceTree = "<group>"; };
 		E64310F31F2D37CA00E6CCEE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		E6470DFB1F384022009BD68F /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwiftyJSON.h; path = SwiftyJSON/Source/SwiftyJSON.h; sourceTree = "<group>"; };
+		E6470DFC1F384022009BD68F /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		E6CAFCEE1F3455A00076E35C /* LDRConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRConstant.swift; sourceTree = "<group>"; };
 		E6FD29BC1F2864630057D0E8 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FD29CF1F286E0A0057D0E8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +75,15 @@
 			path = RSS;
 			sourceTree = "<group>";
 		};
+		E6470DFA1F383FF7009BD68F /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				E6470DFB1F384022009BD68F /* SwiftyJSON.h */,
+				E6470DFC1F384022009BD68F /* SwiftyJSON.swift */,
+			);
+			name = SwiftyJSON;
+			sourceTree = "<group>";
+		};
 		E6FD29B31F2864630057D0E8 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +121,7 @@
 				E6CAFCEE1F3455A00076E35C /* LDRConstant.swift */,
 				E6FD29D11F286E0A0057D0E8 /* ViewController.swift */,
 				E62EB2501F344C6A009422A9 /* RSS */,
+				E6470DFA1F383FF7009BD68F /* SwiftyJSON */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -264,6 +277,7 @@
 				E6CAFCEF1F3455A00076E35C /* LDRConstant.swift in Sources */,
 				E6FD29D81F286E0A0057D0E8 /* ViewController.swift in Sources */,
 				E6FD29D61F286E0A0057D0E8 /* AppDelegate.swift in Sources */,
+				E6470DFD1F384022009BD68F /* SwiftyJSON.swift in Sources */,
 				E62EB2541F344C6A009422A9 /* LDRRSSClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
