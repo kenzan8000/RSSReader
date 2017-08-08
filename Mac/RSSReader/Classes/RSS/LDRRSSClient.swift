@@ -80,7 +80,6 @@ class LDRRSSClient: NSObject {
     }
 
 
-
 }
 
 
@@ -93,6 +92,18 @@ extension LDRRSSClient: XMLParserDelegate {
 
     func parserDidEndDocument(_ parser: XMLParser) {
 
+    }
+
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        LDRLOG(elementName)
+    }
+
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        LDRLOG(string)
+    }
+
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        LDRLOG(elementName)
     }
 
 }
