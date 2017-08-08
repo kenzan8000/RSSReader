@@ -10,45 +10,25 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RSSReader/Classes/RSS/LDRRSSClient.swift"
-            timestampString = "523781344.375184"
+            timestampString = "523866024.404259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "init()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RSSReader.LDRRSSClient.init () -&gt; RSSReader.LDRRSSClient"
-                  moduleName = "RSSReader"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kenzan8000/Dropbox/workspace/job/kenzan8000/RSSReader/Mac/RSSReader/Classes/RSS/LDRRSSClient.swift"
-                  timestampString = "523781561.941042"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "1975">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RSSReader.LDRRSSClient.(init () -&gt; RSSReader.LDRRSSClient).(closure #1)"
-                  moduleName = "RSSReader"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kenzan8000/Dropbox/workspace/job/kenzan8000/RSSReader/Mac/RSSReader/Classes/RSS/LDRRSSClient.swift"
-                  timestampString = "523781561.944622"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
+            startingLineNumber = "102"
+            endingLineNumber = "102">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RSSReader/Classes/RSS/LDRRSSClient.swift"
+            timestampString = "523866025.862528"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -6,25 +6,21 @@ class LDRRSSClient: NSObject {
 
     /// MARK: - property
     static let sharedInstance = LDRRSSClient()
-    var feedManager: AFURLSessionManager!
+
+    static let maxNumberOfXMLTask = 3
+    var XMLManager: AFURLSessionManager!
 
 
     /// MARK: - init
 
     override init() {
+        // rss client
         let configuration = URLSessionConfiguration.background(withIdentifier: LDRNSStringFromClass(LDRRSSClient.self))
-        configuration.httpMaximumConnectionsPerHost = 1;
-        self.feedManager = AFURLSessionManager(sessionConfiguration: configuration)
+        configuration.httpMaximumConnectionsPerHost = LDRRSSClient.maxNumberOfXMLTask
+        self.XMLManager = AFURLSessionManager(sessionConfiguration: configuration)
         let XMLParserResponseSerializer = AFXMLParserResponseSerializer()
         XMLParserResponseSerializer.acceptableContentTypes = Set<String>(["application/atom+xml", "application/rss+xml", "text/xml", "text/html"])
-        self.feedManager.responseSerializer = XMLParserResponseSerializer
-        let url = URL(string: "https://github.com/kenzan8000.atom")!
-        var request = URLRequest(url: url)
-        //request.setValue("application/atom+xml", forHTTPHeaderField: "Content-Type")
-        let dataTask = self.feedManager.dataTask(with: request) { response, data, error in
-
-        }
-        dataTask.resume()
+        self.XMLManager.responseSerializer = XMLParserResponseSerializer
     }
 
 
@@ -33,5 +29,70 @@ class LDRRSSClient: NSObject {
     deinit {
     }
 
+
+    /// MARK: - public api
+
+    /**
+     * request xmls
+     *
+     * @param urlStrings [String]
+     */
+    func requestXMLs(urlStrings: [String]) {
+        for urlString in urlStrings {
+            guard let url = URL(string: urlString) else { continue }
+            self.XMLManager.dataTask(with: URLRequest(url: url)) { [unowned self] response, data, error in
+                self.executeXMLTasks()
+                guard (error == nil) else { return }
+
+                let parser = data as! XMLParser
+                parser.delegate = self
+                parser.parse()
+            }
+        }
+        self.executeXMLTasks()
+    }
+
+    /**
+     * cancel all xml requests
+     */
+    func cancelXMLRequests() {
+        DispatchQueue.main.async { [unowned self] in
+            for task in self.XMLManager.tasks { task.cancel() }
+        }
+    }
+
+
+    /// MARK: - private api
+
+    /**
+     * set current xml tasks and execute them
+     */
+    private func executeXMLTasks() {
+        DispatchQueue.main.async { [unowned self] in
+            // set concurrent tasks
+            var numberOfConcurrentTasks = 0
+            for task in self.XMLManager.tasks {
+                if numberOfConcurrentTasks >= LDRRSSClient.maxNumberOfXMLTask { return }
+                if task.state == .running { numberOfConcurrentTasks += 1 }
+                else if task.state == .suspended { task.resume(); numberOfConcurrentTasks += 1 }
+            }
+        }
+    }
+
+
+
 }
 
+
+/// MARK: - XMLParserDelegate
+extension LDRRSSClient: XMLParserDelegate {
+
+    func parserDidStartDocument(_ parser: XMLParser) {
+
+    }
+
+    func parserDidEndDocument(_ parser: XMLParser) {
+
+    }
+
+}

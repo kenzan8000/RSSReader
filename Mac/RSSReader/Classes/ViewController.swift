@@ -14,7 +14,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        LDRRSSClient.sharedInstance
+        LDRRSSClient.sharedInstance.requestXMLs(urlStrings: ["https://github.com/kenzan8000.atom"])
     }
 
 }
