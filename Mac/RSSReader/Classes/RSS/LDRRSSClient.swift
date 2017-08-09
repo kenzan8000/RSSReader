@@ -44,9 +44,9 @@ class LDRRSSClient: NSObject {
                 self.executeXMLTasks()
                 guard (error == nil) else { return }
 
-                let parser = data as! XMLParser
-                parser.delegate = self
-                parser.parse()
+                let rssParser = LDRRSSParser(xmlParser: data as! XMLParser)
+                rssParser.delegate = self
+                rssParser.parse()
             }
         }
         self.executeXMLTasks()
@@ -79,31 +79,13 @@ class LDRRSSClient: NSObject {
         }
     }
 
-
 }
 
 
-/// MARK: - XMLParserDelegate
-extension LDRRSSClient: XMLParserDelegate {
+/// MARK: - LDRRSSParserDelegate
+extension LDRRSSClient: LDRRSSParserDelegate {
 
-    func parserDidStartDocument(_ parser: XMLParser) {
-
-    }
-
-    func parserDidEndDocument(_ parser: XMLParser) {
-
-    }
-
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        LDRLOG(elementName)
-    }
-
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        LDRLOG(string)
-    }
-
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        LDRLOG(elementName)
+    func parserDidEndParse(parser: LDRRSSParser) {
     }
 
 }

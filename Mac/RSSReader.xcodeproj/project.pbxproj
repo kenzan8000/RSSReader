@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		220A933DBE61EE0A870CBC37 /* Pods_RSSReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489FFD02EFA982A2B7258CED /* Pods_RSSReader.framework */; };
+		E62A13E11F3AE60A00CFB352 /* LDRRSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A13E01F3AE60A00CFB352 /* LDRRSSParser.swift */; };
 		E62EB2541F344C6A009422A9 /* LDRRSSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62EB2521F344C6A009422A9 /* LDRRSSClient.swift */; };
 		E64310F41F2D37CA00E6CCEE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64310F31F2D37CA00E6CCEE /* CloudKit.framework */; };
 		E6470DFD1F384022009BD68F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6470DFC1F384022009BD68F /* SwiftyJSON.swift */; };
@@ -22,6 +23,7 @@
 		3D5DA5095B961956D6DDC3BC /* Pods-RSSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSSReader/Pods-RSSReader.release.xcconfig"; sourceTree = "<group>"; };
 		489FFD02EFA982A2B7258CED /* Pods_RSSReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92303FABB7C0802E1CD0F17 /* Pods-RSSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSSReader/Pods-RSSReader.debug.xcconfig"; sourceTree = "<group>"; };
+		E62A13E01F3AE60A00CFB352 /* LDRRSSParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRRSSParser.swift; sourceTree = "<group>"; };
 		E62EB2521F344C6A009422A9 /* LDRRSSClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRRSSClient.swift; sourceTree = "<group>"; };
 		E62EB2551F344CD8009422A9 /* RSSReader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSReader-Bridging-Header.h"; sourceTree = "<group>"; };
 		E64310F21F2D369300E6CCEE /* RSSReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RSSReader.entitlements; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				E62EB2521F344C6A009422A9 /* LDRRSSClient.swift */,
+				E62A13E01F3AE60A00CFB352 /* LDRRSSParser.swift */,
 			);
 			path = RSS;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				E6FD29D81F286E0A0057D0E8 /* ViewController.swift in Sources */,
 				E6FD29D61F286E0A0057D0E8 /* AppDelegate.swift in Sources */,
 				E6470DFD1F384022009BD68F /* SwiftyJSON.swift in Sources */,
+				E62A13E11F3AE60A00CFB352 /* LDRRSSParser.swift in Sources */,
 				E62EB2541F344C6A009422A9 /* LDRRSSClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
