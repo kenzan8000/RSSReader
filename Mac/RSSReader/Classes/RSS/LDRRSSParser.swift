@@ -1,4 +1,5 @@
 import Cocoa
+import SWXMLHash
 
 
 /// MARK: - LDRRSSParserDelegate
@@ -19,6 +20,8 @@ class LDRRSSParser: NSObject {
     /// MARK: - property
     weak var delegate: AnyObject?
     var xmlParser: XMLParser!
+    var xmlString = ""
+    var rss: XMLIndexer?
 
 
     /// MARK: - init
@@ -59,20 +62,25 @@ extension LDRRSSParser: XMLParserDelegate {
 
     func parserDidEndDocument(_ parser: XMLParser) {
         if self.delegate != nil && self.delegate!.responds(to: #selector(LDRRSSParserDelegate.parserDidEndParse)) {
-            (self.delegate as! LDRRSSParserDelegate).parserDidEndParse(parser: self)
+            let queue = DispatchQueue(label: LDRNSStringFromClass(LDRRSSParser.self))
+            queue.async { self.rss = SWXMLHash.parse(self.xmlString) }
+            queue.sync {
+                LDRLOG(self.rss!)
+                (self.delegate as! LDRRSSParserDelegate).parserDidEndParse(parser: self)
+            }
         }
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        LDRLOG("<\(elementName)>")
+        self.xmlString += "<\(elementName)>"
     }
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        LDRLOG(string)
+        self.xmlString += string.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        LDRLOG("</\(elementName)>")
+        self.xmlString += "</\(elementName)>"
     }
 
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {

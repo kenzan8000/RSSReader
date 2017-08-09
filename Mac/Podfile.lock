@@ -12,13 +12,16 @@ PODS:
   - AFNetworking/Reachability (3.1.0)
   - AFNetworking/Security (3.1.0)
   - AFNetworking/Serialization (3.1.0)
+  - SWXMLHash (4.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - SWXMLHash (~> 4.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
 
-PODFILE CHECKSUM: fd5cee51a15a3e00607f0c8af961c29bea31f8b9
+PODFILE CHECKSUM: 26779fa992e42070b822af91575270984f8a1f1e
 
 COCOAPODS: 1.2.0
