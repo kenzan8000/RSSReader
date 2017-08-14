@@ -1,4 +1,4 @@
-import Cocoa
+    import Cocoa
 import SWXMLHash
 
 
@@ -64,7 +64,7 @@ extension LDRRSSParser: XMLParserDelegate {
         if self.delegate != nil && self.delegate!.responds(to: #selector(LDRRSSParserDelegate.parserDidEndParse)) {
             let queue = DispatchQueue(label: LDRNSStringFromClass(LDRRSSParser.self))
             queue.async {
-                do { self.rss = try LDRRSS.deserialize(SWXMLHash.parse(self.xmlString)) }
+                do { self.rss = try SWXMLHash.parse(self.xmlString).value() }
                 catch {self.rss = nil }
             }
             queue.sync {

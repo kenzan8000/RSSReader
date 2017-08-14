@@ -14,6 +14,8 @@
 		E6470DFD1F384022009BD68F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6470DFC1F384022009BD68F /* SwiftyJSON.swift */; };
 		E655A15B1F415DA900C5653D /* LDRRSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E655A15A1F415DA900C5653D /* LDRRSS.swift */; };
 		E6CAFCEF1F3455A00076E35C /* LDRConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CAFCEE1F3455A00076E35C /* LDRConstant.swift */; };
+		E6F89FA81F41830D0001A34F /* Date+XMLElementDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F89FA61F41830D0001A34F /* Date+XMLElementDeserializable.swift */; };
+		E6F89FAA1F4189210001A34F /* Date+XMLAttributeDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F89FA91F4189210001A34F /* Date+XMLAttributeDeserializable.swift */; };
 		E6FD29D61F286E0A0057D0E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD29CF1F286E0A0057D0E8 /* AppDelegate.swift */; };
 		E6FD29D71F286E0A0057D0E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6FD29D01F286E0A0057D0E8 /* Main.storyboard */; };
 		E6FD29D81F286E0A0057D0E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD29D11F286E0A0057D0E8 /* ViewController.swift */; };
@@ -33,6 +35,8 @@
 		E6470DFC1F384022009BD68F /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		E655A15A1F415DA900C5653D /* LDRRSS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRRSS.swift; sourceTree = "<group>"; };
 		E6CAFCEE1F3455A00076E35C /* LDRConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDRConstant.swift; sourceTree = "<group>"; };
+		E6F89FA61F41830D0001A34F /* Date+XMLElementDeserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+XMLElementDeserializable.swift"; sourceTree = "<group>"; };
+		E6F89FA91F4189210001A34F /* Date+XMLAttributeDeserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+XMLAttributeDeserializable.swift"; sourceTree = "<group>"; };
 		E6FD29BC1F2864630057D0E8 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FD29CF1F286E0A0057D0E8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6FD29D01F286E0A0057D0E8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -90,6 +94,15 @@
 			name = SwiftyJSON;
 			sourceTree = "<group>";
 		};
+		E6F89FA41F41830D0001A34F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E6F89FA91F4189210001A34F /* Date+XMLAttributeDeserializable.swift */,
+				E6F89FA61F41830D0001A34F /* Date+XMLElementDeserializable.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		E6FD29B31F2864630057D0E8 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +140,7 @@
 				E6CAFCEE1F3455A00076E35C /* LDRConstant.swift */,
 				E6FD29D11F286E0A0057D0E8 /* ViewController.swift */,
 				E62EB2501F344C6A009422A9 /* RSS */,
+				E6F89FA41F41830D0001A34F /* Extension */,
 				E6470DFA1F383FF7009BD68F /* SwiftyJSON */,
 			);
 			path = Classes;
@@ -285,8 +299,10 @@
 				E655A15B1F415DA900C5653D /* LDRRSS.swift in Sources */,
 				E6FD29D61F286E0A0057D0E8 /* AppDelegate.swift in Sources */,
 				E6470DFD1F384022009BD68F /* SwiftyJSON.swift in Sources */,
+				E6F89FA81F41830D0001A34F /* Date+XMLElementDeserializable.swift in Sources */,
 				E62A13E11F3AE60A00CFB352 /* LDRRSSParser.swift in Sources */,
 				E62EB2541F344C6A009422A9 /* LDRRSSClient.swift in Sources */,
+				E6F89FAA1F4189210001A34F /* Date+XMLAttributeDeserializable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
