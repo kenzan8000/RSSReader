@@ -21,7 +21,7 @@ class LDRRSSParser: NSObject {
     weak var delegate: AnyObject?
     var xmlParser: XMLParser!
     var xmlString = ""
-    var rss: XMLIndexer?
+    var rss: LDRRSS?
 
 
     /// MARK: - init
@@ -63,9 +63,11 @@ extension LDRRSSParser: XMLParserDelegate {
     func parserDidEndDocument(_ parser: XMLParser) {
         if self.delegate != nil && self.delegate!.responds(to: #selector(LDRRSSParserDelegate.parserDidEndParse)) {
             let queue = DispatchQueue(label: LDRNSStringFromClass(LDRRSSParser.self))
-            queue.async { self.rss = SWXMLHash.parse(self.xmlString) }
+            queue.async {
+                do { self.rss = try LDRRSS.deserialize(SWXMLHash.parse(self.xmlString)) }
+                catch {self.rss = nil }
+            }
             queue.sync {
-                LDRLOG(self.rss!)
                 (self.delegate as! LDRRSSParserDelegate).parserDidEndParse(parser: self)
             }
         }
