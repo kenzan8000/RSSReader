@@ -10,11 +10,18 @@ struct LDRRSS: XMLIndexerDeserializable {
     let subtitle: String?
     let entries: [LDRRSSEntry]
 
+
+    /// MARK: - class method
+
+    /**
+     * deserialize from xml
+     * @param node [XMLIndexer]
+     */
     static func deserialize(_ node: XMLIndexer) throws -> LDRRSS {
         var entries: [LDRRSSEntry] = []
         // RSS 1.0
         do {
-             for item in node["rdf:RDF"]["item"].all { entries.append(try item.value()) }
+            for item in node["rdf:RDF"]["item"].all { entries.append(try item.value()) }
             return try LDRRSS(
                 title: node["rdf:RDF"]["channel"]["title"].value(),
                 link: URL(string: node["rdf:RDF"]["channel"]["link"].value())!,
@@ -43,6 +50,7 @@ struct LDRRSS: XMLIndexerDeserializable {
             entries: entries
         )
     }
+
 }
 
 
@@ -54,6 +62,13 @@ struct LDRRSSEntry: XMLIndexerDeserializable {
     let summary: String?
     let updated: Date
 
+
+    /// MARK: - class method
+
+    /**
+     * deserialize from xml
+     * @param node [XMLIndexer]
+     */
     static func deserialize(_ node: XMLIndexer) throws -> LDRRSSEntry {
         // RSS 1.0
         do {

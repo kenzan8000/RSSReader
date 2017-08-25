@@ -1,4 +1,5 @@
 import Cocoa
+import CloudKit
 
 
 /// MARK: - LDRRSSClient
@@ -59,6 +60,37 @@ class LDRRSSClient: NSObject {
         DispatchQueue.main.async { [unowned self] in
             for task in self.XMLManager.tasks { task.cancel() }
         }
+    }
+
+    /**
+     * save on cloud
+     *
+     * @param rss [LDRRSS]
+     */
+    func save(rss: LDRRSS) {
+/*
+        let feed = CKRecord(recordType: "RSSFeeds")
+        feed["title"] = rss.title as NSString
+        feed["link"] = rss.link.absoluteString as NSString
+        if rss.subtitle != nil { feed["subtitle"] = rss.subtitle! as NSString }
+
+        var entries: [CKRecord] = []
+        for rssEntry in rss.entries {
+            let entry = CKRecord(recordType: "RSSEntries")
+            entry["title"] = rssEntry.title as NSString
+            entry["link"] = rssEntry.link.absoluteString as NSString
+            if (rssEntry.summary != nil) { entry["summary"] = rssEntry.summary! as NSString }
+            entry["updated"] = rssEntry.updated as NSDate
+            entries.append(entry)
+        }
+
+        let collection = CKContainer.default().publicCloudDatabase
+        collection.save(feed, completionHandler: { (record: CKRecord?, error: NSError?) in
+            if error != nil {
+                return
+            }
+        } as! (CKRecord?, Error?) -> Void)
+*/
     }
 
 
