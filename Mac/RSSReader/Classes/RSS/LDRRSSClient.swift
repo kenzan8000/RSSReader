@@ -10,6 +10,7 @@ class LDRRSSClient: NSObject {
 
     static let maxNumberOfXMLTask = 3
     var XMLManager: AFURLSessionManager!
+    var rssList: [LDRRSS] = []
 
 
     /// MARK: - init
@@ -62,12 +63,36 @@ class LDRRSSClient: NSObject {
         }
     }
 
+
+    /// MARK: - private api
+
+    /**
+     * set current xml tasks and execute them
+     */
+    private func executeXMLTasks() {
+        DispatchQueue.main.async { [unowned self] in
+            // set concurrent tasks
+            var numberOfConcurrentTasks = 0
+            for task in self.XMLManager.tasks {
+                if numberOfConcurrentTasks >= LDRRSSClient.maxNumberOfXMLTask { return }
+                if task.state == .running { numberOfConcurrentTasks += 1 }
+                else if task.state == .suspended { task.resume(); numberOfConcurrentTasks += 1 }
+            }
+        }
+    }
+
+    /**
+     * load from cloud
+     */
+    private func load() {
+    }
+
     /**
      * save on cloud
      *
      * @param rss [LDRRSS]
      */
-    func save(rss: LDRRSS) {
+    private func save(rss: LDRRSS) {
 /*
         let feed = CKRecord(recordType: "RSSFeeds")
         feed["title"] = rss.title as NSString
@@ -93,24 +118,6 @@ class LDRRSSClient: NSObject {
 */
     }
 
-
-    /// MARK: - private api
-
-    /**
-     * set current xml tasks and execute them
-     */
-    private func executeXMLTasks() {
-        DispatchQueue.main.async { [unowned self] in
-            // set concurrent tasks
-            var numberOfConcurrentTasks = 0
-            for task in self.XMLManager.tasks {
-                if numberOfConcurrentTasks >= LDRRSSClient.maxNumberOfXMLTask { return }
-                if task.state == .running { numberOfConcurrentTasks += 1 }
-                else if task.state == .suspended { task.resume(); numberOfConcurrentTasks += 1 }
-            }
-        }
-    }
-
 }
 
 
@@ -118,6 +125,33 @@ class LDRRSSClient: NSObject {
 extension LDRRSSClient: LDRRSSParserDelegate {
 
     func parserDidEndParse(parser: LDRRSSParser) {
+        if parser.rss == nil { return }
+
+        // add new feed or update feed
+        let newRss = parser.rss!
+        let index = self.rssList.index(where: { (item) -> Bool in
+            item.link == newRss.link
+        })
+        // update feed
+        if (index != nil) {
+            // merge new entries and unread old entries
+            let oldRss = self.rssList[index!]
+            var unreadEntries: [LDRRSSEntry] = []
+            for oldEntry in oldRss.entries {
+                let newEntries = newRss.entries.filter { $0.link == oldEntry.link }
+                if newEntries.count > 0 { continue }
+                unreadEntries.append(oldEntry)
+            }
+            unreadEntries.append(contentsOf: newRss.entries)
+            self.rssList[index!] = LDRRSS(
+                title: newRss.title,
+                link: newRss.link,
+                subtitle: newRss.subtitle,
+                entries: unreadEntries
+            )
+        }
+        // add new feed
+        else { self.rssList.append(newRss) }
     }
 
 }
