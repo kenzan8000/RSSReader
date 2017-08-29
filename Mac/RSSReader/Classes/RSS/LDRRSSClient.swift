@@ -2,6 +2,18 @@ import Cocoa
 import CloudKit
 
 
+/// MARK: -  LDRRSSClientDelegate
+@objc protocol LDRRSSClientDelegate {
+
+    /**
+     * called when parse ended
+     * @param parser [LDRRSSParser]
+     */
+    func parserDidEndParse(parser: LDRRSSParser)
+
+}
+
+
 /// MARK: - LDRRSSClient
 class LDRRSSClient: NSObject {
 
@@ -63,6 +75,60 @@ class LDRRSSClient: NSObject {
         }
     }
 
+    /**
+     * load from cloud
+     */
+    func loadFromCloud() {
+        let collection = CKContainer.default().publicCloudDatabase
+        let query = CKQuery(recordType: "RSSFeeds", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+        collection.perform(query, inZoneWith: nil, completionHandler: { (records: [CKRecord]?, error: NSError?) in
+            if let records = records {
+                DispatchQueue.main.async { [unowned self] in
+                    for record in records {
+                        let index = self.rssList.index(where: { (item) -> Bool in
+                            item.link.absoluteString == record["link"] as! String
+                        })
+                        if index != nil {
+                        }
+                        else {
+                        }
+                    }
+                }
+            }
+        } as! ([CKRecord]?, Error?) -> Void)
+    }
+
+    /**
+     * save on cloud
+     *
+     * @param rss [LDRRSS]
+     */
+    func saveOnCloud(rss: LDRRSS) {
+        let feed = CKRecord(recordType: "RSSFeeds")
+        feed["title"] = rss.title as NSString
+        feed["link"] = rss.link.absoluteString as NSString
+        if rss.subtitle != nil { feed["subtitle"] = rss.subtitle! as NSString }
+
+        var entries: [CKRecord] = []
+        for rssEntry in rss.entries {
+            let entry = CKRecord(recordType: "RSSEntries")
+            entry["title"] = rssEntry.title as NSString
+            entry["link"] = rssEntry.link.absoluteString as NSString
+            if (rssEntry.summary != nil) { entry["summary"] = rssEntry.summary! as NSString }
+            entry["updated"] = rssEntry.updated as NSDate
+            entries.append(entry)
+        }
+
+        let collection = CKContainer.default().publicCloudDatabase
+        collection.save(feed, completionHandler: { (record: CKRecord?, error: NSError?) in
+//            if let record = record {
+//                DispatchQueue.main.async { [unowned self] in
+//                }
+//            }
+        } as! (CKRecord?, Error?) -> Void)
+    }
+
+
 
     /// MARK: - private api
 
@@ -81,50 +147,6 @@ class LDRRSSClient: NSObject {
         }
     }
 
-    /**
-     * load from cloud
-     */
-    private func load() {
-        let collection = CKContainer.default().publicCloudDatabase
-        let query = CKQuery(recordType: "RSSFeeds", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
-        collection.perform(query, inZoneWith: nil, completionHandler: { (records: [CKRecord]?, error: NSError?) in
-            if let records = records {
-                DispatchQueue.main.async { [unowned self] in
-                }
-            }
-        } as! ([CKRecord]?, Error?) -> Void)
-    }
-
-    /**
-     * save on cloud
-     *
-     * @param rss [LDRRSS]
-     */
-    private func save(rss: LDRRSS) {
-        let feed = CKRecord(recordType: "RSSFeeds")
-        feed["title"] = rss.title as NSString
-        feed["link"] = rss.link.absoluteString as NSString
-        if rss.subtitle != nil { feed["subtitle"] = rss.subtitle! as NSString }
-
-        var entries: [CKRecord] = []
-        for rssEntry in rss.entries {
-            let entry = CKRecord(recordType: "RSSEntries")
-            entry["title"] = rssEntry.title as NSString
-            entry["link"] = rssEntry.link.absoluteString as NSString
-            if (rssEntry.summary != nil) { entry["summary"] = rssEntry.summary! as NSString }
-            entry["updated"] = rssEntry.updated as NSDate
-            entries.append(entry)
-        }
-
-        let collection = CKContainer.default().publicCloudDatabase
-        collection.save(feed, completionHandler: { (record: CKRecord?, error: NSError?) in
-            if let record = record {
-                DispatchQueue.main.async { [unowned self] in
-                }
-            }
-        } as! (CKRecord?, Error?) -> Void)
-    }
-
 }
 
 
@@ -137,7 +159,7 @@ extension LDRRSSClient: LDRRSSParserDelegate {
         // add new feed or update feed
         let newRss = parser.rss!
         let index = self.rssList.index(where: { (item) -> Bool in
-            item.link == newRss.link
+            item.link.absoluteString == newRss.link.absoluteString
         })
         // update feed
         if (index != nil) {
