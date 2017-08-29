@@ -85,6 +85,14 @@ class LDRRSSClient: NSObject {
      * load from cloud
      */
     private func load() {
+        let collection = CKContainer.default().publicCloudDatabase
+        let query = CKQuery(recordType: "RSSFeeds", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+        collection.perform(query, inZoneWith: nil, completionHandler: { (records: [CKRecord]?, error: NSError?) in
+            if let records = records {
+                DispatchQueue.main.async { [unowned self] in
+                }
+            }
+        } as! ([CKRecord]?, Error?) -> Void)
     }
 
     /**
@@ -93,7 +101,6 @@ class LDRRSSClient: NSObject {
      * @param rss [LDRRSS]
      */
     private func save(rss: LDRRSS) {
-/*
         let feed = CKRecord(recordType: "RSSFeeds")
         feed["title"] = rss.title as NSString
         feed["link"] = rss.link.absoluteString as NSString
@@ -111,11 +118,11 @@ class LDRRSSClient: NSObject {
 
         let collection = CKContainer.default().publicCloudDatabase
         collection.save(feed, completionHandler: { (record: CKRecord?, error: NSError?) in
-            if error != nil {
-                return
+            if let record = record {
+                DispatchQueue.main.async { [unowned self] in
+                }
             }
         } as! (CKRecord?, Error?) -> Void)
-*/
     }
 
 }
